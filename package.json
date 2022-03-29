@@ -22,7 +22,8 @@
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-web": "0.17.1",
-    "@expo/ngrok": "^4.1.0"
+    "@expo/ngrok": "^4.1.0",
+    "react-native-safe-area-context": "3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
