@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   baseColumn: {
     flex: 1,
     marginTop: 12,
-    alignItems: 'flex-start'
   },
 
   titleText: {
