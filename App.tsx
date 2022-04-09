@@ -1,27 +1,58 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, {useState} from 'react';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import Stock from './components/Stock.tsx';
-import parcel from './assets/parcel.png';
+import Home from "./components/Home";
+import Pick from "./components/Pick";
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
+const Tab = createBottomTabNavigator();
+
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'transparent'
+  }
+};
+
+const routeIcons = {
+  "Lager": "home" as const,
+  "Plock": "list" as const
+};
 
 export default function App() {
+  const [products, setProducts] = useState([]);
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.base}>
-        <Text style={styles.titleText}>StockApp</Text>
-        <Image source={parcel} style ={styles.mainImage}/>
+    <SafeAreaProvider style={styles.defaultColor}>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer theme={navTheme}>
+          <Tab.Navigator screenOptions={ ({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName = routeIcons[route.name as keyof typeof routeIcons] || "alert";
+
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: "tomato",
+            tabBarInactiveTintColor: "gray"
+          })}
+          >
+            <Tab.Screen name="Lager" options={{headerShown:false}}>
+              {() => <Home products={products} setProducts={setProducts} />}
+            </Tab.Screen>
+            <Tab.Screen name="Plock" options={{headerShown:false}}>
+              {() => <Pick setProducts={setProducts}/>}
+            </Tab.Screen>
+          </Tab.Navigator>
+        </NavigationContainer>
         <StatusBar style="auto" />
-      </View>
-      <View style={styles.baseColumn}>
-        <Stock />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
+    
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -29,25 +60,7 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12
   },
-  base: {
-    flexDirection: 'row',
+  defaultColor: {
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-
-  baseColumn: {
-    flex: 1,
-    marginTop: 12,
-  },
-
-  titleText: {
-    color: 'rgba(0,0,0, 0.4)',
-    fontSize: 42,
-  },
-  mainImage: {
-    height: 75, 
-    width: 75, 
-    resizeMode:'stretch'
   }
 });

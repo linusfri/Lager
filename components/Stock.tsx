@@ -1,14 +1,11 @@
-import { Text, StyleSheet, View, FlatList } from 'react-native';
+import { Text, StyleSheet, View, FlatList, ScrollView, Platform } from 'react-native';
 import { useState, useEffect } from 'react';
-import config from '../config.json';
+import config from '../config/config.json';
+import productModel from '../models/products';
 
-function StockList() {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        fetch(`${config.url}/products?api_key=${config.api_key}`)
-            .then(response => response.json())
-            .then(result => setProducts(result.data));
+function StockList({products, setProducts}) {
+    useEffect( async () => {
+        setProducts(await productModel.getProducts());
     }, []);
 
     return (
@@ -30,11 +27,11 @@ function StockList() {
     );
 }
 
-export default function Stock() {
+export default function Stock({products, setProducts}) {
     return (
         <View>
             <Text style={styles.text}>Lagerförteckning</Text>
-            <StockList />
+            <StockList products={products} setProducts={setProducts} />
         </View>
     );
 }
@@ -46,8 +43,7 @@ const styles = StyleSheet.create({
     },
     productGrid: {
         flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center'
+        flexDirection: 'row'
     },
     productItem: {
         flex: 1,
@@ -60,6 +56,6 @@ const styles = StyleSheet.create({
         height: 80,
     },
     container: {
-
+        // flex:1
     }
 });
