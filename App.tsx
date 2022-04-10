@@ -7,6 +7,7 @@ import Pick from "./components/Pick";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import {Base, Typo} from './Styles/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,8 +27,8 @@ const routeIcons = {
 export default function App() {
   const [products, setProducts] = useState([]);
   return (
-    <SafeAreaProvider style={styles.defaultColor}>
-      <SafeAreaView style={styles.container}>
+    <SafeAreaProvider style={Base.styles.defaultColor}>
+      <SafeAreaView style={Base.styles.appMainContainer}>
         <NavigationContainer theme={navTheme}>
           <Tab.Navigator screenOptions={ ({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -53,14 +54,3 @@ export default function App() {
     
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingLeft: 12,
-    paddingRight: 12
-  },
-  defaultColor: {
-    backgroundColor: '#fff',
-  }
-});

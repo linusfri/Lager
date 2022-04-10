@@ -7,31 +7,21 @@ import Stock from './Stock';
 import Header from './Header'
 import OrderList from './OrderList';
 import PickList from './Picklist';
+import { Base } from '../Styles';
 
 const Stack = createNativeStackNavigator();
 
-export default function Pick({setProducts}) {
+export default function Pick(props) {
     return (
-        <View style={styles.container}>
+        <View style={Base.styles.container}>
             <Header />
             <Stack.Navigator initialRouteName="List">
                 <Stack.Screen name="List" component={OrderList}></Stack.Screen>
                 <Stack.Screen name="Details">
-                    {(screenProps) => <PickList {...screenProps} setProducts={setProducts}/>}
+                    {(screenProps) => <PickList {...screenProps} setProducts={props.setProducts}/>}
                 </Stack.Screen>
             </Stack.Navigator>
         </View>
         
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    body: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});

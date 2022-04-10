@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, TouchableOpacity } from "react-native";
 import config from "../config/config.json";
+import { Base, Typo } from "../Styles/index";
 import orderModel from '../models/orders';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type RootStackParamList = {
-    Details: {order: object}
-}
-
-type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 
 export default function OrderList({ route, navigation }) {
+
     const { reload } = route.params || false;
+
     const [allOrders, setAllOrders] = useState<any[]>([]);
     
     async function reloadOrders() {
@@ -29,15 +27,19 @@ export default function OrderList({ route, navigation }) {
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
-            return <Button
-                title={order.name}
-                key={index}
-                onPress={() => {
-                    navigation.navigate("Details", {
-                        order: order
-                    });
-                }}
-            />
+            return (
+                <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                        navigation.navigate("Details", {
+                            order: order
+                        });
+                    }}
+                    style={Base.styles.button}
+                >
+                    <Text style={Typo.styles.buttonText}>{order.name}</Text>
+                </TouchableOpacity>
+            )
         });
     
         return (

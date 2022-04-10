@@ -2,6 +2,7 @@ import { Text, StyleSheet, View, FlatList, ScrollView, Platform } from 'react-na
 import { useState, useEffect } from 'react';
 import config from '../config/config.json';
 import productModel from '../models/products';
+import {Base, Typo} from '../Styles/index';
 
 function StockList({products, setProducts}) {
     useEffect( async () => {
@@ -9,16 +10,16 @@ function StockList({products, setProducts}) {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <View>
             <FlatList
                 numColumns={3}
                 data={products}
                 keyExtractor={(item) => item.id}
                 renderItem={ ({ item }) => (
-                    <View style={styles.productGrid}>
-                        <View style={styles.productItem}>
-                            <Text>{item.name}</Text>
-                            <Text>I lager: {item.stock}</Text>
+                    <View style={Base.styles.productGrid}>
+                        <View style={Base.styles.productItem}>
+                            <Text style={Typo.styles.buttonText}>{item.name}</Text>
+                            <Text style={Typo.styles.buttonText}>I lager: {item.stock}</Text>
                         </View> 
                     </View>
                 )}
@@ -30,32 +31,8 @@ function StockList({products, setProducts}) {
 export default function Stock({products, setProducts}) {
     return (
         <View>
-            <Text style={styles.text}>Lagerförteckning</Text>
+            <Text style={Typo.styles.h2}>Lagerförteckning</Text>
             <StockList products={products} setProducts={setProducts} />
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    text: {
-        fontSize: 24,
-        color: 'rgba(0,0,0, 0.6)'
-    },
-    productGrid: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    productItem: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 255, 0.3)',
-        marginVertical: 5,
-        marginHorizontal: 5,
-        height: 80,
-    },
-    container: {
-        // flex:1
-    }
-});
