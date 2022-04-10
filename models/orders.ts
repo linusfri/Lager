@@ -18,7 +18,7 @@ const orders = {
             const newStock = item.stock - item.amount;
             item.stock = newStock;
 
-            await fetch(`${config.url}/products`, {
+            fetch(`${config.url}/products`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -33,7 +33,7 @@ const orders = {
         }
     },
     setOrderStatus: async function setOrderStatus(order:order, status_id:number) {
-        await fetch(`${config.url}/orders`, {
+        fetch(`${config.url}/orders`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
