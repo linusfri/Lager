@@ -1,7 +1,7 @@
 import { Text, StyleSheet, View, FlatList, ScrollView, Platform } from 'react-native';
 import { useState, useEffect } from 'react';
 import config from '../config/config.json';
-import productModel from '../models/products';
+import productModel from '../models/productModel';
 import {Base, Typo} from '../Styles/index';
 
 function StockList({products, setProducts}) {

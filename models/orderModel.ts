@@ -48,8 +48,5 @@ const orders = {
     }
 }
 
-// TODO: Minska lagersaldo för de orderrader som finns i ordern
-
-// TODO: Ändra status för ordern till packad
 
 export default orders;

@@ -2,12 +2,13 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     h1: {
         fontSize: 42,
-        color: 'rgba(0,0,0, 0.4)',
+        color: "rgba(0,0,0, 0.4)",
     },
     
     h2: {
         fontSize: 24,
-        color: 'rgba(0,0,0, 0.6)'
+        color: "rgba(0,0,0, 0.6)",
+        marginBottom: 28
     },
     
     h3: {
@@ -19,12 +20,23 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginBottom: 28
     },
+
+    label: {
+        fontSize: 12,
+        marginBottom: 0
+    },
     
     buttonText: {
         color: "white",
-        margin: "auto",
+        textAlign: "center",
         fontWeight: "700"
     },
+
+    deliveryItemText: {
+        color: "rgba(0,0,0, 0.6)",
+        textAlign: "center",
+        fontWeight: "500"
+    }
 });
 
 export {styles};

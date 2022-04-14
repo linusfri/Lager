@@ -2,12 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import Home from "./components/Home";
-import Pick from "./components/Pick";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+
 import {Base, Typo} from './Styles/index';
+import Home from "./components/Home";
+import Pick from "./components/Pick";
+import Deliveries from './components/Deliveries';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,11 +23,13 @@ const navTheme = {
 
 const routeIcons = {
   "Lager": "home" as const,
-  "Plock": "list" as const
+  "Plock": "list" as const,
+  "Inleveranslista": "md-logo-dropbox" as const
 };
 
 export default function App() {
   const [products, setProducts] = useState([]);
+
   return (
     <SafeAreaProvider style={Base.styles.defaultColor}>
       <SafeAreaView style={Base.styles.appMainContainer}>
@@ -45,6 +49,9 @@ export default function App() {
             </Tab.Screen>
             <Tab.Screen name="Plock" options={{headerShown:false}}>
               {() => <Pick setProducts={setProducts}/>}
+            </Tab.Screen>
+            <Tab.Screen name="Inleveranslista" options={{headerShown:false}}>
+              {() => <Deliveries setProducts={setProducts}/>}
             </Tab.Screen>
           </Tab.Navigator>
         </NavigationContainer>
