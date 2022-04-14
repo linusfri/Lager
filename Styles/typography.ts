@@ -36,6 +36,12 @@ const styles = StyleSheet.create({
         color: "rgba(0,0,0, 0.6)",
         textAlign: "center",
         fontWeight: "500"
+    },
+
+    deliveryListStatusText: {
+        textAlign: "center",
+        fontWeight: "700",
+        marginTop: 28
     }
 });
 

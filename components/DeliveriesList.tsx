@@ -10,6 +10,7 @@ export default function DeliveriesList({ route, navigation }) {
     const [deliveries, setDeliveries] = useState<any>([]);
     const { reload } = route.params || false;
 
+
     async function getAllDeliveries() {
         setDeliveries(await deliveryModel.getAllDeliveries());
     }
@@ -43,6 +44,7 @@ export default function DeliveriesList({ route, navigation }) {
             >
                 <Text style={Typo.styles.buttonText}>Skapa ny inleverans</Text>
             </TouchableOpacity>
+            <Text style={Typo.styles.deliveryListStatusText}>Antal inleveranser: {deliveries.length}</Text>
             {listOfDeliveries}
         </ScrollView>
     );
