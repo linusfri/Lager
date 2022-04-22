@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(33,150,243)',
         marginVertical: 5,
         marginHorizontal: 5,
+        borderRadius: 4,
         height: 80,
     },
     deliveryItem: {
