@@ -31,7 +31,7 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation}:a
                     navigation.navigate("Login");
                 }}
             >
-                <Text>{title}</Text>
+                <Text style={Typo.styles.buttonText}>{title}</Text>
             </TouchableOpacity>
             {title === "Logga in" &&
                 <TouchableOpacity
@@ -40,7 +40,7 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation}:a
                     }}
                     style={Base.styles.button}
                 >
-                    <Text>Registrera istället</Text>
+                    <Text style={Typo.styles.buttonText}>Registrera istället</Text>
                 </TouchableOpacity>
             }
         </View>

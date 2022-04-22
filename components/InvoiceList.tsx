@@ -44,7 +44,7 @@ export default function InvoiceList({ route, navigation, setIsLoggedIn }:any) {
                     navigation.navigate("Lager");
                 }}
             >
-                <Text>Logga ut</Text>
+                <Text style={Typo.styles.buttonText}>Logga ut</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={Base.styles.button}
@@ -52,7 +52,7 @@ export default function InvoiceList({ route, navigation, setIsLoggedIn }:any) {
                     navigation.navigate("Skapa faktura");
                 }}
             >
-                <Text>Fakturera order</Text>
+                <Text style={Typo.styles.buttonText}>Fakturera order</Text>
             </TouchableOpacity>
 
             <Text style={Typo.styles.h2InvoiceList}>Tidigare fakturor</Text>
