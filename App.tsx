@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
@@ -10,6 +10,9 @@ import {Base, Typo} from './Styles/index';
 import Home from "./components/Home";
 import Pick from "./components/Pick";
 import Deliveries from './components/Deliveries';
+import authModel from "./models/auth";
+import Auth from "./components/auth/Auth";
+import Invoices from './components/Invoices';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,11 +27,18 @@ const navTheme = {
 const routeIcons = {
   "Lager": "home" as const,
   "Plock": "list" as const,
-  "Inleveranslista": "md-logo-dropbox" as const
+  "Inleveranslista": "md-logo-dropbox" as const,
+  "Faktura": "wallet-outline" as const,
+  "Logga in": "log-in-outline" as const
 };
 
 export default function App() {
   const [products, setProducts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+
+  useEffect(async () => {
+    setIsLoggedIn(await authModel.loggedIn())
+  }, []);
 
   return (
     <SafeAreaProvider style={Base.styles.defaultColor}>
@@ -43,7 +53,18 @@ export default function App() {
             tabBarActiveTintColor: "tomato",
             tabBarInactiveTintColor: "gray"
           })}
+            initialRouteName="Lager"
           >
+            { isLoggedIn ?
+            <Tab.Screen name="Faktura" options={{headerShown:false}}>
+              { () => <Invoices setIsLoggedIn={setIsLoggedIn} /> }
+            </Tab.Screen> :
+
+            <Tab.Screen name="Logga in" options={{headerShown:false}}>
+              { () => <Auth setIsLoggedIn={setIsLoggedIn} />}
+            </Tab.Screen>
+            }
+
             <Tab.Screen name="Lager" options={{headerShown:false}}>
               {() => <Home products={products} setProducts={setProducts} />}
             </Tab.Screen>
@@ -60,4 +81,4 @@ export default function App() {
     </SafeAreaProvider>
     
   );
-}
+};

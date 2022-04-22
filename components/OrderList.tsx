@@ -41,11 +41,30 @@ export default function OrderList({ route, navigation }) {
                 </TouchableOpacity>
             )
         });
+        
+        // Ifall man skulle vilja fakturera genom ordervyn (smidigare än ett formulär)
+        const listOfPickedOrders = allOrders
+            .filter(order => order.status === "Packad")
+            .map((order, index) => {
+                return (
+                    <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                            navigation.navigate("Details", {
+                                order: order
+                            });
+                        }}
+                        style={Base.styles.button}
+                    >
+                        <Text style={Typo.styles.buttonText}>{order.name}</Text>
+                    </TouchableOpacity>
+                );
+            });
     
         return (
             <View>
-                <Text>Ordrar redo att plockas</Text>
+                <Text style={Typo.styles.h2OrderList}>Ordrar redo att plockas</Text>
                 {listOfOrders}
             </View>
-        )
-}
+        );
+};

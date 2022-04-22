@@ -32,7 +32,7 @@ const orders = {
             });
         }
     },
-    setOrderStatus: async function setOrderStatus(order:order, status_id:number) {
+    setOrderStatus: async function setOrderStatus(order:Partial<order>, status_id:number) {
         fetch(`${config.url}/orders`, {
             method: "PUT",
             headers: {

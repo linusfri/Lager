@@ -18,7 +18,20 @@ const styles = StyleSheet.create({
 
     p: {
         fontSize: 12,
-        marginBottom: 28
+        marginBottom: 28,
+        color: "rgba(0,0,0, 0.6)"
+    },
+
+    h2OrderList: {
+        fontSize: 20,
+        color: "rgba(0,0,0, 0.6)"
+    },
+
+    h2InvoiceList: {
+        fontSize: 24,
+        color: "rgba(0,0,0, 0.6)",
+        marginBottom: 12,
+        marginTop: 28
     },
 
     label: {

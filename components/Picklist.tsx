@@ -51,7 +51,7 @@ export default function PickList ({ route, navigation, setProducts }) {
             {orderItemsList}
             <Button
                 title="Pack order" onPress={pick}
-                disabled={isOutOfStock() || isEmptyOrder()}
+                disabled={isOutOfStock() || isEmptyOrder() || order.status === "Packad"}
             />
         </View>
     )

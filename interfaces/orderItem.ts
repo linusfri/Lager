@@ -5,7 +5,8 @@ interface orderItem {
     product_id: number,
     amount: number,
     stock: number,
-    name: string
+    name: string,
+    price: number
 }
 
 export default orderItem;
