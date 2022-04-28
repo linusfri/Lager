@@ -1,4 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const mainAppPadding = 12;
+const deviceWidth = Dimensions.get("window").width - mainAppPadding;
+const dividedDeviceHeight = Dimensions.get("window").height / 2.5;
 
 const styles = StyleSheet.create({
     button: {
@@ -6,6 +10,11 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "rgb(33,150,243)",
         borderRadius: 2,
+    },
+
+    map: {
+        height: dividedDeviceHeight,
+        width: deviceWidth,
     },
 
     picker: {
@@ -18,8 +27,8 @@ const styles = StyleSheet.create({
 
     appMainContainer: {
         flex: 1,
-        paddingLeft: 12,
-        paddingRight: 12
+        paddingLeft: mainAppPadding,
+        paddingRight: mainAppPadding
     },
 
     container: {
@@ -68,6 +77,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         height: 80,
     },
+
     deliveryItem: {
         flexDirection: "column",
         alignItems: "center",
@@ -76,6 +86,7 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         margin: 12
     },
+
     baseColumn: {
         flex: 1,
         marginTop: 12,

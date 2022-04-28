@@ -13,6 +13,7 @@ import Deliveries from './components/Deliveries';
 import authModel from "./models/auth";
 import Auth from "./components/auth/Auth";
 import Invoices from './components/Invoices';
+import Shipments from './components/Shipments';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,8 @@ const routeIcons = {
   "Plock": "list" as const,
   "Inleveranslista": "md-logo-dropbox" as const,
   "Faktura": "wallet-outline" as const,
-  "Logga in": "log-in-outline" as const
+  "Logga in": "log-in-outline" as const,
+  "Leveranser": "arrow-forward-outline" as const
 };
 
 export default function App() {
@@ -74,11 +76,11 @@ export default function App() {
             <Tab.Screen name="Inleveranslista" options={{headerShown:false}}>
               {() => <Deliveries setProducts={setProducts}/>}
             </Tab.Screen>
+            <Tab.Screen name="Leveranser" component={Shipments} options={{headerShown:false}}></Tab.Screen>
           </Tab.Navigator>
         </NavigationContainer>
         <StatusBar style="auto" />
       </SafeAreaView>
     </SafeAreaProvider>
-    
   );
 };

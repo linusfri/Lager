@@ -12,8 +12,9 @@ const styles = StyleSheet.create({
     },
     
     h3: {
-        fontSize: 42,
-        marginBottom: 28
+        fontSize: 16,
+        marginBottom: 6,
+        color: "rgba(0,0,0, 0.6)"
     },
 
     p: {
