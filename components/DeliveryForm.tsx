@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { ScrollView, Text, TextInput, TouchableOpacity } from "react-native";
-import { Base, Typo, Forms } from '../Styles';
+import { showMessage } from 'react-native-flash-message';
 
+import { Base, Typo, Forms } from '../Styles';
 import Delivery from "../interfaces/delivery";
 import deliveryModel from '../models/deliveryModel';
 import productModel from '../models/productModel';
@@ -16,7 +17,17 @@ export default function DeliveryForm ({ navigation, setProducts }) {
     const [deliveryButtonDisabled, setDeliveryButtonDisabled] = useState<boolean>(false);
 
     async function addDelivery() {
-        await deliveryModel.addDelivery(delivery);
+        const result = await deliveryModel.addDelivery(delivery);
+        if (result.title === "Fel") {
+            showMessage({
+                message: result.title,
+                description: result.message,
+                type: result.type
+            })
+
+            navigation.navigate("List", { reload:true });
+            return;
+        }
 
         const updatedProduct = {
             ...currentProduct,
@@ -27,6 +38,13 @@ export default function DeliveryForm ({ navigation, setProducts }) {
 
         setProducts(await productModel.getProducts());
         navigation.navigate("List", { reload:true });
+        
+        showMessage({
+            message: result.title,
+            description: result.message,
+            type: result.type
+        })
+        return;
     }
 
     return (

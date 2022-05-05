@@ -5,6 +5,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import FlashMessage from 'react-native-flash-message'; 
 
 import {Base, Typo} from './Styles/index';
 import Home from "./components/Home";
@@ -79,6 +80,7 @@ export default function App() {
             <Tab.Screen name="Leveranser" component={Shipments} options={{headerShown:false}}></Tab.Screen>
           </Tab.Navigator>
         </NavigationContainer>
+        <FlashMessage position="top"/>
         <StatusBar style="auto" />
       </SafeAreaView>
     </SafeAreaProvider>

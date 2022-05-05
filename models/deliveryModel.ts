@@ -4,8 +4,11 @@ import config from "../config/config.json";
 const deliveryModel = {
     addDelivery: async function addDelivery(delivery:Partial<delivery>) {
         if (!delivery.product_id || !delivery.amount || !delivery.delivery_date) {
-            alert("You have to fill in the product, number of items to deliver and a valid date.");
-            return false;
+            return {
+                title: "Fel",
+                message: "Du måste fylla i alla uppgifter för inleveransen!",
+                type: "danger"
+            };
         }
         const response = await fetch(`${config.url}/deliveries`, {
             method: "POST",
@@ -17,11 +20,11 @@ const deliveryModel = {
                 api_key: config.api_key
             })
         })
-        if (!response.ok) {
-            alert("Something went wrong with the API request.")
-            return false;
-        }
-        return true;
+        return {
+            title: "Ok",
+            message: "Inleveransen är skapad!",
+            type: "success"
+        };
     },
 
     getAllDeliveries: async function getAllDeliveries() {

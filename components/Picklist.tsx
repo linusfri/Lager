@@ -6,11 +6,6 @@ import order from "../interfaces/order";
 
 export default function PickList ({ route, navigation, setProducts }) {
     const { order } = route.params;
-    const [productsList, setProductsList] = useState([])
-
-    useEffect(async () => {
-        setProductsList(await productModel.getProducts());
-    }, []);
 
     async function pick() {
         await orderModel.pickOrder(order);
@@ -50,7 +45,7 @@ export default function PickList ({ route, navigation, setProducts }) {
             <Text>Produkter:</Text>
             {orderItemsList}
             <Button
-                title="Pack order" onPress={pick}
+                title="Packa order" onPress={pick}
                 disabled={isOutOfStock() || isEmptyOrder() || order.status === "Packad"}
             />
         </View>

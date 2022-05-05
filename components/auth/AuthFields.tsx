@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { styles } from "../../Styles/base";
+
 import { Typo, Forms, Base } from '../../Styles/index';
 
 export default function AuthFields({ auth, setAuth, title, submit, navigation}:any) {
