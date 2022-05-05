@@ -13,7 +13,7 @@ test("Testar så att knappen 'Packa order' faktiskt har titeln 'Packa order", ()
     
 });
 
-test("Testar så att knappen 'Packa order' är inaktiv när inget orderobjekt skickas med", () => {
+test("Testar så att knappen 'Packa order' är inaktiv när tomt orderobjekt skickas med", () => {
     const route = {params: {order: {order_items: []}}};
     const setProducts = () => false;
     const navigation = {navigate: () => false};
